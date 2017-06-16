@@ -1,3 +1,4 @@
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -25,7 +26,7 @@ const app = express();
 const users = require('./routes/users');
 
 // port number
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // cors middleware
 app.use(cors());
@@ -48,6 +49,11 @@ app.use('/users', users);
 // index route
 app.get('/', (req, res) => {
   res.send('Invalid End Point!');
+});
+
+// Non Existed routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 

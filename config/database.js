@@ -1,4 +1,4 @@
 module.exports = {
   database: 'mongodb://localhost:27017/meanauthapp',
-  secret: 'sillyCat'
+  secret: process.env.JWT_SECRET
 };
